@@ -36,7 +36,7 @@ def base64_2_mask(s, h, w, col, row, name):
 def count_categories(ann_dir: str):
     categories = []
     seen = set()
-    cid = 0
+    cid = 1
 
     for ann_file in os.listdir(ann_dir):
         if not ann_file.endswith('.json'):
@@ -121,7 +121,7 @@ def supervisely2coco(ann_dir: str, output_path: str):
                 annotation["area"] = area
                 annotation["iscrowd"] = 0
                 category = ann["classTitle"].replace("branch_of_", "")
-                annotation["category_id"] = category_mapper[category]+1
+                annotation["category_id"] = category_mapper[category]
                 annotation["segmentation"] = rle
                 annotations.append(annotation)
         print(f"{ann_file} has converted.")
